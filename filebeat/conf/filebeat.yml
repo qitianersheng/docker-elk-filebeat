@@ -16,11 +16,17 @@ filebeat:
         type: java #日志类型
       fields_under_root: true # 让设置的字段变成顶级输出，否则会在fields字段下
       tail_files: false # 默认就是false
-      multiline: # 多行处理    
+      multiline: # 多行处理
         pattern: '^\['
         match: after
         negate: true
   registry_file: /etc/registry/mark # 记录日志读取位置，防止重启后重复读取
 output:
   logstash:
-      hosts: ["182.254.151.43:5044"] #填写logstash的访问IP
+      hosts: ["172.16.180.4:5044"] #填写logstash的访问IP,filebeat数据是给到logstash，logstash再给到ES
+
+#output.elasticsearch:
+#output:
+#  logstash:
+#    hosts: ["172.16.180.4:9200"] #填写logstash的访问IP
+
